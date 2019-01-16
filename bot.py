@@ -7,10 +7,11 @@ token = ""
 with open("token.cfg") as t:
     token = t.read()
 
-# Default prefix
+# Default prefixes
 
 prefix = "/"
 lib_prefix = "lib_"
+preload_prefix = "preload_"
 
 # API functions
 
@@ -48,7 +49,12 @@ register_command("help", cmd_help)
 
 os.chdir('commands')
 for filename in os.listdir():
-    if filename != 'bot.py' and not filename.startswith(lib_prefix):
+    if filename.startswith(preload_prefix):
+        with open(filename) as file:
+            exec(file.read())
+            
+for filename in os.listdir():
+    if filename != 'bot.py' and filename.startswith(lib_prefix) == False and filename.startswith(preload_prefix) == False:
         with open(filename) as file:
             exec(file.read())
 
