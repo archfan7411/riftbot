@@ -10,6 +10,7 @@ with open("token.cfg") as t:
 # Default prefix
 
 prefix = "/"
+lib_prefix = "lib_"
 
 # API functions
 
@@ -47,7 +48,7 @@ register_command("help", cmd_help)
 
 os.chdir('commands')
 for filename in os.listdir():
-    if filename != 'bot.py':
+    if filename != 'bot.py' and not filename.startswith(lib_prefix):
         with open(filename) as file:
             exec(file.read())
 
