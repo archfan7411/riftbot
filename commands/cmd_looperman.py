@@ -1,4 +1,5 @@
-#Looperman api 0.3 Copyright Paul-E 2019
+#Looperman api 0.4 Copyright Paul-E 2019
+#Discord RiftBot Edition
 import urllib.request
 import bs4 as BeautifulSoup4
 from bs4 import *
@@ -222,31 +223,30 @@ def get_info(url, loop_id):
 async def cmd_looperman(message):
     channel = message.channel
     content = message.content
-    try:
-        cmds = content[9:] #This line needs tweaking
-        await send(channel, ("Searching Looperman..."))
-        if "search" in cmds:
-            term = cmds[9:]
-            loops = search(keywords=str(term), page=0)
-        if "genre" in cmds:
-            genre = cmds[8:]
-            loops = search(gid=str(genre), page=0)
-        if "category" in cmds:
-            category = cmds[11:]
-            loops = search(cid=str(category), page=0)
+    
+    cmds = content[9:] #This line needs tweaking
+    await send(channel, ("Searching Looperman..."))
+    if "search" in cmds:
+        term = cmds[9:]
+        loops = search(keywords=str(term), page=0)
+    if "genre" in cmds:
+        genre = cmds[8:]
+        loops = search(gid=str(genre), page=0)
+    if "category" in cmds:
+        category = cmds[11:]
+        loops = search(cid=str(category), page=0)
 
-        await send(channel, (str(len(loops)) + " matching loop(s): "))
-        message_list = []
-        for loop in list(loops):
-            url = loops[loop]["url"]
-            loop_id = loops[loop]["id"]
-            loop_info = get_info(url, loop_id)
-            download_url = loop_info["dl"]
-            artist = loop_info["artist"]
-            txt = "Name: " + str(loop_id)[:20] + " by " + str(artist) + ". \n" + str(download_url) + "\n"
-            await send(channel, (txt))
-    except:
-        await send(channel, ("Command Error"))    
+    await send(channel, (str(len(loops)) + " matching loop(s): "))
+    message_list = []
+    for loop in list(loops):
+        url = loops[loop]["url"]
+        loop_id = loops[loop]["id"]
+        loop_info = get_info(url, loop_id)
+        download_url = loop_info["dl"]
+        artist = loop_info["artist"]
+        txt = "Name: " + str(loop_id)[:20] + " by " + str(artist) + ". \n" + str(download_url) + "\n"
+        await send(channel, (txt))
+    
     
     
 register_command("looperman", cmd_looperman)
