@@ -68,7 +68,11 @@ client = discord.Client()
 async def on_message(message):
     for command in commands:
         if message.content.startswith(prefix+command):
-            await commands[command](message)
+            try:
+                await commands[command](message)
+            except Exception as e:
+                msg = "**Exception in command `"+command+"`:**\n"+e
+                message.channel.send(msg)
 
 # When logged in
 
