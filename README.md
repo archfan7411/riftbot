@@ -6,7 +6,8 @@ To use RiftBot, you need a Discord application configured as a bot. To get one, 
 
 Then, download the RiftBot files in the directory of your choice by cloning the URL:
 `git clone https://github.com/archfan7411/riftbot.git`
-Then, replace the contents of token.cfg with the token you have saved. To run the bot, simply run `python bot.py &`.
+
+**Make a file, token.cfg, with the token you have saved**. To run the bot, do `python bot.py &`.
 
 # Inviting your bot instance
 To generate an invite link, go back to the developer dashboard (https://discordapp.com/developers/applications/me), select your application, and go to the OAuth2 tab. Scroll down and edit the Scopes as required; a URL will then be generated below them. Copy and paste this URL into your browser and follow the instructions from then on.
