@@ -100,7 +100,7 @@ async def on_message(message):
             if message.content.startswith(prefix+command):
 
                 try:
-                    args = message.content[len(message.content.split()[1])+1:]
+                    args = message.content[len(message.content.split()[0])+1:]
                     await commands[command](message, args)
 
                 except Exception as e:
@@ -115,7 +115,7 @@ async def on_message(message):
                 if message.content.startswith(prefix+command):
 
                     try:
-                        args = message.content[len(message.content.split()[1])+1:]
+                        args = message.content[len(message.content.split()[0])+1:]
                         await commands[command](message, args)
 
                     except Exception as e:
