@@ -17,7 +17,7 @@ async def cmd_help(message, args):
     help_embed = discord.Embed(
         title = "**Help**",
         description = help_msg,
-        colour = get_bot_color()
+        colour = get_embed_color()
     )
 
     # Send the help embed.
