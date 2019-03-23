@@ -105,7 +105,7 @@ async def on_message(message):
 
                 except Exception as e:
                     msg = "**Exception in command `" + command + "`:**\n" + str(e)
-                    message.channel.send(msg)
+                    await message.channel.send(msg)
 
         # Checking for admin commands as well! But only if the author is an admin.        
         if is_admin(str(message.author.id)):
@@ -120,7 +120,7 @@ async def on_message(message):
 
                     except Exception as e:
                         msg = "**Exception in command `" + command + "`:**\n" + str(e)
-                        message.channel.send(msg)
+                        await message.channel.send(msg)
 
 
 # When logged in
