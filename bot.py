@@ -60,7 +60,7 @@ def is_admin(id):
     return id in admins
 
 async def restart():
-    os.execute("restart.sh")
+    os.system('./restart.sh')
     # Exit cleanly
     exit()
     
