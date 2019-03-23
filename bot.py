@@ -73,7 +73,9 @@ commands = {}
 admin_commands = {}
 
 # Load commands
-     
+
+os.chdir('commands')
+
 for filename in os.listdir():
 
     # Make sure it isn't this source file. Needs to be abstracted in the future.
@@ -98,11 +100,11 @@ async def on_message(message):
             if message.content.startswith(prefix+command):
 
                 try:
-                    args = message.content[len(message.content.split()[1])+1]
+                    args = message.content[len(message.content.split()[1])+1:]
                     await commands[command](message, args)
 
                 except Exception as e:
-                    msg = "**Exception in command `" + command + "`:**\n" + e
+                    msg = "**Exception in command `" + command + "`:**\n" + str(e)
                     message.channel.send(msg)
 
         # Checking for admin commands as well! But only if the author is an admin.        
@@ -113,11 +115,11 @@ async def on_message(message):
                 if message.content.startswith(prefix+command):
 
                     try:
-                        args = message.content[len(message.content.split()[1])+1]
+                        args = message.content[len(message.content.split()[1])+1:]
                         await commands[command](message, args)
 
                     except Exception as e:
-                        msg = "**Exception in command `" + command + "`:**\n" + e
+                        msg = "**Exception in command `" + command + "`:**\n" + str(e)
                         message.channel.send(msg)
 
 
