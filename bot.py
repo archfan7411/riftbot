@@ -15,6 +15,10 @@ client = discord.Client()
 
 admins = []
 
+# User attributes
+
+attr = {}
+
 # Default prefix
 
 prefix = "r."
@@ -44,6 +48,17 @@ def get_bot_prefix():
 
 def get_embed_color():
     return color
+
+def set_user_attr(user, attribute, value):
+    name = str(user.id)
+    attr[name][attribute] = value
+    
+def get_user_attr(user, attribute):
+    name = str(user.id)
+    if name in attr.keys():
+        if attribute in attr[name].keys():
+            return attr[name][attribute]
+    return None
 
 def command_exists(command):
 
